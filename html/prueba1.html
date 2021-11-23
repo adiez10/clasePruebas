@@ -1,0 +1,71 @@
+<div>
+
+  <template id="plantillaestudiante">
+
+    <p>
+
+      <b>Nombre</b>: <span></span><br>
+
+      <b>Género</b>: <span></span><br>
+
+      <b>Edad</b>: <span></span>
+
+    </p>
+
+    <hr>
+
+  </template>
+
+</div>
+
+<p><input id="botoncargar" type="button" value="Cargar registro" onclick="cargarRegistro()"></p>
+
+<script>
+
+  var datosEstudiantes = [{nombre: 'Marie Curie',
+
+                           genero: 'Female',
+
+                           edad: '148'},
+
+                          {nombre: 'Isaac Newton',
+
+                           genero: 'Male',
+
+                           edad: '373'},
+
+                          {nombre: 'Albert Einstein',
+
+                           genero: 'Male',
+
+                           edad: '136'}];
+
+  posActual = 0;
+
+  function cargarRegistro() {
+
+    var plantilla = document.getElementById('plantillaestudiante'),
+
+        datosEstudiante = datosEstudiantes[posActual],
+
+        clone = plantilla.content.cloneNode(true),
+
+        fields = clone.querySelectorAll('span');
+
+    fields[0].textContent = datosEstudiante.nombre;
+
+    fields[1].textContent = datosEstudiante.genero;
+
+    fields[2].textContent = datosEstudiante.edad;
+
+    plantilla.parentNode.appendChild(clone);
+
+    posActual++;
+
+    if (posActual >= datosEstudiantes.length)
+
+      document.getElementById('botoncargar').style.display = 'none';
+
+  }
+
+</script>
