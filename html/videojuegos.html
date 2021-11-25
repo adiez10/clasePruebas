@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pruebitas Videojuegos</title>
+</head>
+
+<body>
+
+	<h1>This is a Heading</h1>
+	<p>This is a paragraph.</p>
+
+	<a href="index.html" target="_blank">Volver</a>
+
+	<div>
+
+	  <template id="plantillaestudiante">
+
+		<p>
+
+		  <b>Nombre</b>: <span></span><br>
+
+		  <b>Género</b>: <span></span><br>
+
+		  <b>Empresa</b>: <span></span>
+
+		</p>
+
+		<hr>
+
+	  </template>
+
+	</div>
+
+	<p><input id="botoncargar" type="button" value="Cargar registro" onclick="cargarRegistro()"></p>
+</body>
+</html>
+
+<script>
+
+  var datosEstudiantes = [{nombre: 'World of Warcraft',
+
+                           genero: 'MMORPG',
+
+                           empresa: 'Blizzard'},
+						{nombre: 'Half-Life',
+
+                           genero: 'FPS',
+
+                           empresa: 'Valve'},                        
+
+                        {nombre: 'Super Mario Bros.',
+
+                           genero: 'Plataformas',
+
+                           empresa: 'Nintendo'}];
+
+  posActual = 0;
+
+  function cargarRegistro() {
+
+    var plantilla = document.getElementById('plantillaestudiante'),
+
+        datosEstudiante = datosEstudiantes[posActual],
+
+        clone = plantilla.content.cloneNode(true),
+
+        fields = clone.querySelectorAll('span');
+
+    fields[0].textContent = datosEstudiante.nombre;
+
+    fields[1].textContent = datosEstudiante.genero;
+
+    fields[2].textContent = datosEstudiante.empresa;
+
+    plantilla.parentNode.appendChild(clone);
+
+    posActual++;
+
+    if (posActual >= datosEstudiantes.length)
+
+      document.getElementById('botoncargar').style.display = 'none';
+
+  }
+
+</script>
